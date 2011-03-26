@@ -16,13 +16,13 @@
         ->appendName('description', $config->site->description);
 
     /** Set <script /> Tags */
-    $this->headScript()->setSeparator('')
+    $this->jQuery()
         /** @link http://www.modernizr.com/ */
-        ->appendFile('/js/modernizr-1.7.min.js');
+        ->addJavascriptFile('/js/modernizr-1.7.min.js');
 
     /** @link http://mathiasbynens.be/notes/async-analytics-snippet */
     if (APPLICATION_ENV == 'production') {
-        $this->headScript()->appendScript(
+        $this->jQuery()->addJavascript(
         	"var _gaq=[['_setAccount','{$config->google->key->analytics}'],['".
             "_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.ge".
             "tElementsByTagName(t)[0];g.async=1;g.src='//www.google-analytics".
@@ -46,7 +46,6 @@
             $this->headTitle().
             $this->headMeta().
             $this->headLink().
-            $this->headScript().
             $this->jQuery().
         '</head><body>'.
             $this->partial('partials/header.phtml').
