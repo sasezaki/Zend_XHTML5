@@ -4,23 +4,34 @@
 
     /** Set <link /> Tags */
     $this->headLink()->setSeparator('')
-        ->prependStylesheet('/css/reset.css?v=2', 'all');
+        /** @link http://meyerweb.com/eric/tools/css/reset/ */
+        ->appendStylesheet('/css/reset.css', 'all')
+        /** @link http://html5boilerplate.com/ */
+        ->appendStylesheet('/css/html5boilerplate.css', 'all');
 
     /** Set <meta /> Tags */
     $this->headMeta()->setSeparator('')
         ->setCharset('UTF-8')
-        ->appendName('author', $config->meta->author)
-        ->appendName('description', $config->meta->description);
+        ->appendName('author', $config->site->author)
+        ->appendName('description', $config->site->description);
 
     /** Set <script /> Tags */
     $this->headScript()->setSeparator('')
         /** @link http://www.modernizr.com/ */
-        ->appendFile('/js/modernizr-1.7.min.js')
-        /** @link http://mathiasbynens.be/notes/async-analytics-snippet */
-        ->appendScript("var _gaq=[['_setAccount','{$config->google->key->analytics}'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))");
+        ->appendFile('/js/modernizr-1.7.min.js');
+
+    /** @link http://mathiasbynens.be/notes/async-analytics-snippet */
+    if (APPLICATION_ENV == 'production') {
+        $this->headScript()->appendScript(
+        	"var _gaq=[['_setAccount','{$config->google->key->analytics}'],['".
+            "_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.ge".
+            "tElementsByTagName(t)[0];g.async=1;g.src='//www.google-analytics".
+            ".com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))"
+        );
+    }
 
     /** Set <title /> Tag */
-    $this->headTitle($config->meta->site->title)->setSeparator('');
+    $this->headTitle($config->site->title)->setSeparator('');
 
     /** Create Document */
     if (!$this->doctype()->isXhtml()) {
@@ -37,12 +48,8 @@
             $this->headLink().
             $this->headScript().
             $this->jQuery().
-        '</head>'.
-        '<body>'.
-            '<header>'.
-            '</header>'.
+        '</head><body>'.
+            $this->partial('partials/header.phtml').
             $this->layout()->content.
-            '<footer>'.
-            '</footer>'.
-        '</body>'.
-        '</html>';
+            $this->partial('partials/footer.phtml').
+        '</body></html>';
