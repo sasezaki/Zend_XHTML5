@@ -48,7 +48,7 @@
             $this->headLink().
             $this->jQuery().
         '</head><body>'.
-            $this->partial('partials/header.phtml').
+            $this->partial('partials/header.phtml', array('site' => $config->site)).
             $this->layout()->content.
-            $this->partial('partials/footer.phtml').
+            $this->partial('partials/footer.phtml', array('site' => $config->site)).
         '</body></html>';

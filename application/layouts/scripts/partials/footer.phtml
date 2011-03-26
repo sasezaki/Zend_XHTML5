@@ -2,6 +2,6 @@
 	echo '<footer>';
 
 	/**  Copyright Information */
-	echo '<p class="copyright">'.$this->author.'</p>';
+	if($this->site->author) echo '<p class="copyright">&#xa9;'.date('Y').' '.$this->site->author.'</p>';
 
 	echo '</footer>';
