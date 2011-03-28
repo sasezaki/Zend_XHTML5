@@ -23,7 +23,7 @@
     /** @link http://mathiasbynens.be/notes/async-analytics-snippet */
     if (APPLICATION_ENV == 'production') {
         $this->jQuery()->addJavascript(
-        	"var _gaq=[['_setAccount','{$config->google->key->analytics}'],['".
+            "var _gaq=[['_setAccount','{$config->google->key->analytics}'],['".
             "_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.ge".
             "tElementsByTagName(t)[0];g.async=1;g.src='//www.google-analytics".
             ".com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))"
@@ -36,10 +36,10 @@
     /** Create Document */
     if (!$this->doctype()->isXhtml()) {
         echo strtolower($this->doctype()).PHP_EOL.
-        	'<html class="no-js" lang="en">';
+            '<html class="no-js" lang="en">';
     } else {
         echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL.
-        	'<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">';
+            '<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">';
     }
 
     echo '<head>'.
