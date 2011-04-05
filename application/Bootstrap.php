@@ -25,6 +25,11 @@
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
     /**
+     * @staticvar jQuery version to bootstrap
+     */
+    const JQUERY_VERSION = '1.5.1';
+
+    /**
      * Store config in registry
      *
      * @return void
@@ -78,9 +83,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'ZendX_JQuery_View_Helper'
         );
         if (APPLICATION_ENV == 'production') {
-            $view->jQuery()->setVersion('1.5.1');
+            $view->jQuery()->setVersion(self::JQUERY_VERSION);
         } else {
-            $view->jQuery()->setLocalPath($view->baseUrl('js/jquery-1.5.1.min.js'));
+            $view->jQuery()->setLocalPath($view->baseUrl('js/jquery-'.self::JQUERY_VERSION.'.min.js'));
         }
         $view->jQuery()->enable();
 
