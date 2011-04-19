@@ -27,7 +27,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     /**
      * @staticvar jQuery version to bootstrap
      */
-    const JQUERY_VERSION = '1.5.1';
+    const JQUERY_VERSION = '1.5.2';
 
     /**
      * Store config in registry
