@@ -14,3 +14,7 @@ Things included:
 * [modernizr](http://www.modernizr.com/)
 * html5boilerplate.css ([from html5-boilerplate](https://github.com/paulirish/html5-boilerplate))
 * [Eric Meyer's reset.css](http://meyerweb.com/eric/tools/css/reset/)
+
+Dependencies:
+-------------
+* [Zend_Mend](https://github.com/echoeastcreative/Zend_Mend)
