@@ -9,13 +9,14 @@
 		<phingcall target="tests" />
 	</target>
 	<target name="classmaps">
-		<exec command="phpab --basedir / --output resources/classmap.application.php application" />
-		<exec command="phpab --basedir / --output resources/classmap.Zend.php --exclude ${path.Zend}/InfoCard/Exception.php ${path.Zend}" />
-		<exec command="phpab --basedir / --output resources/classmap.ZendX.php ${path.ZendX}" />
-		<exec command="phpab --basedir / --output resources/classmap.Zend_Mend.php ${path.Zend_Mend}" />
+		<property name="phpab.options" value="--basedir / --template resources/fullpath.tpl.php --indent 4" />
+		<exec command="phpab ${phpab.options} --output resources/classmap.application.php application" />
+		<exec command="phpab ${phpab.options} --output resources/classmap.Zend.php --exclude ${path.Zend}/InfoCard/Exception.php ${path.Zend}" />
+		<exec command="phpab ${phpab.options} --output resources/classmap.ZendX.php ${path.ZendX}" />
+		<exec command="phpab ${phpab.options} --output resources/classmap.Zend_Mend.php ${path.Zend_Mend}" />
 	</target>
 	<target name="docs">
-		<exec command="phpdoc --useconfig docs/phpdoc.ini" logoutput="false" />
+		<exec command="phpdoc --useconfig docs/phpdoc.ini" logoutput="true" />
 	</target>
 	<target name="tests">
 		<exec command="phpunit --configuration=tests/phpunit.xml" logoutput="false" />
