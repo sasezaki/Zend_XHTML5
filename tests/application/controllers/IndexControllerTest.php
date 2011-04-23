@@ -6,10 +6,10 @@
  *
  * @category  Zend_XHTML5
  * @package   Tests
- * @author    Doug Hurst <doug@echoeastcreative.com>
- * @copyright 2011 Echo East Creative, LLC
+ * @author    Doug Hurst <dalan.hurst@gmail.com>
+ * @copyright 2011 Doug Hurst
  * @license   http://www.opensource.org/licenses/bsd-license New BSD License
- * @link      https://github.com/echoeastcreative/Zend_XHTML5
+ * @link      http://github.com/dalanhurst/Zend_XHTML5
  */
 
 
@@ -19,10 +19,10 @@
  * @category  Zend_XHTML5
  * @package   Tests
  * @group     controllers
- * @author    Doug Hurst <doug@echoeastcreative.com>
- * @copyright 2011 Echo East Creative, LLC
+ * @author    Doug Hurst <dalan.hurst@gmail.com>
+ * @copyright 2011 Doug Hurst
  * @license   http://www.opensource.org/licenses/bsd-license New BSD License
- * @link      https://github.com/echoeastcreative/Zend_XHTML5
+ * @link      http://github.com/dalanhurst/Zend_XHTML5
  */
 class IndexControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 {

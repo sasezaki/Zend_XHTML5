@@ -6,10 +6,10 @@
  *
  * @category  Zend_XHTML5
  * @package   Controllers
- * @author    Doug Hurst <doug@echoeastcreative.com>
- * @copyright 2011 Echo East Creative, LLC
+ * @author    Doug Hurst <dalan.hurst@gmail.com>
+ * @copyright 2011 Doug Hurst
  * @license   http://www.opensource.org/licenses/bsd-license New BSD License
- * @link      https://github.com/echoeastcreative/Zend_XHTML5
+ * @link      http://github.com/dalanhurst/Zend_XHTML5
  */
 
 
@@ -18,10 +18,10 @@
  *
  * @category  Zend_XHTML5
  * @package   Controllers
- * @author    Doug Hurst <doug@echoeastcreative.com>
- * @copyright 2011 Echo East Creative, LLC
+ * @author    Doug Hurst <dalan.hurst@gmail.com>
+ * @copyright 2011 Doug Hurst
  * @license   http://www.opensource.org/licenses/bsd-license New BSD License
- * @link      https://github.com/echoeastcreative/Zend_XHTML5
+ * @link      http://github.com/dalanhurst/Zend_XHTML5
  */
 class IndexController extends Zend_Controller_Action
 {
