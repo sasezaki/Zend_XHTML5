@@ -23,6 +23,12 @@ defined('APPLICATION_ENV')
         (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production')
     );
 
+//  Class-map Autoloading
+require_once APPLICATION_PATH.'/../resources/classmap.application.php';
+require_once APPLICATION_PATH.'/../resources/classmap.Zend_Mend.php';
+require_once APPLICATION_PATH.'/../resources/classmap.Zend.php';
+require_once APPLICATION_PATH.'/../resources/classmap.ZendX.php';
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 

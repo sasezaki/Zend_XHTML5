@@ -17,6 +17,7 @@ Things included:
 
 Dependencies:
 -------------
+* [PHP AutoloadBuilder CLI](https://github.com/theseer/Autoload)
 * [phpDocumentor](http://www.phpdoc.org/)
 * [Phing](http://www.phing.info/)
 * [PHPUnit](http://www.phpunit.de/)
@@ -24,10 +25,12 @@ Dependencies:
 
 Setup:
 ------
-    pear channel-discover pear.phpunit.de
     pear channel-discover components.ez.no
-    pear channel-discover pear.symfony-project.com
+    pear channel-discover pear.netpirates.net
     pear channel-discover pear.phing.info
+    pear channel-discover pear.phpunit.de
+    pear channel-discover pear.symfony-project.com
     pear install PhpDocumentor
     pear install phpunit/PHPUnit
     pear install phing/phing
+    pear install theseer/Autoload

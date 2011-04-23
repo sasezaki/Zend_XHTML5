@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Zend_XHTML5" default="all">
+	<property name="path.Zend" value="/usr/local/zend/share/ZendFramework/library/Zend" />
+	<property name="path.ZendX" value="/usr/local/zend/share/ZendFramework/library/ZendX" />
+	<property name="path.Zend_Mend" value="../Zend_Mend/library/Mend" />
 	<target name="all">
-		<phingcall target="docs"></phingcall>
-		<phingcall target="tests"></phingcall>
+		<phingcall target="classmaps" />
+		<phingcall target="docs" />
+		<phingcall target="tests" />
+	</target>
+	<target name="classmaps">
+		<exec command="phpab --basedir / --output resources/classmap.application.php application" />
+		<exec command="phpab --basedir / --output resources/classmap.Zend.php --exclude ${path.Zend}/InfoCard/Exception.php ${path.Zend}" />
+		<exec command="phpab --basedir / --output resources/classmap.ZendX.php ${path.ZendX}" />
+		<exec command="phpab --basedir / --output resources/classmap.Zend_Mend.php ${path.Zend_Mend}" />
 	</target>
 	<target name="docs">
-		<echo msg="Beginning phpDocumentor Task"></echo>
-		<exec command="phpdoc --useconfig docs/phpdoc.ini"></exec>
+		<exec command="phpdoc --useconfig docs/phpdoc.ini" logoutput="false" />
 	</target>
 	<target name="tests">
-		<echo msg="Beginning PHPUnit Task"></echo>
-		<exec command="phpunit --configuration=tests/phpunit.xml"></exec>
+		<exec command="phpunit --configuration=tests/phpunit.xml" logoutput="false" />
 	</target>
 </project>
