@@ -17,4 +17,17 @@ Things included:
 
 Dependencies:
 -------------
+* [phpDocumentor](http://www.phpdoc.org/)
+* [Phing](http://www.phing.info/)
+* [PHPUnit](http://www.phpunit.de/)
 * [Zend_Mend](https://github.com/echoeastcreative/Zend_Mend)
+
+Setup:
+------
+    pear channel-discover pear.phpunit.de
+    pear channel-discover components.ez.no
+    pear channel-discover pear.symfony-project.com
+    pear channel-discover pear.phing.info
+    pear install PhpDocumentor
+    pear install phpunit/PHPUnit
+    pear install phing/phing

@@ -5,7 +5,7 @@
  * PHP version 5.3
  *
  * @category  Zend_XHTML5
- * @package   Controllers
+ * @package   Tests
  * @author    Doug Hurst <doug@echoeastcreative.com>
  * @copyright 2011 Echo East Creative, LLC
  * @license   http://www.opensource.org/licenses/bsd-license New BSD License

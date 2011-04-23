@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Zend_XHTML5" default="all">
+	<target name="all">
+		<phingcall target="docs"></phingcall>
+		<phingcall target="tests"></phingcall>
+	</target>
+	<target name="docs">
+		<echo msg="Beginning phpDocumentor Task"></echo>
+		<exec command="phpdoc --useconfig docs/phpdoc.ini"></exec>
+	</target>
+	<target name="tests">
+		<echo msg="Beginning PHPUnit Task"></echo>
+		<exec command="phpunit --configuration=tests/phpunit.xml"></exec>
+	</target>
+</project>
