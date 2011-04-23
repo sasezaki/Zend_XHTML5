@@ -43,25 +43,24 @@ class ErrorController extends Zend_Controller_Action
         case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ROUTE:
         case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER:
         case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ACTION:
-
-                // 404 error -- controller or action not found
-                $this->getResponse()->setHttpResponseCode(404);
-                $this->view->message = 'Page not found';
+            // 404 error -- controller or action not found
+            $this->getResponse()->setHttpResponseCode(404);
+            $this->view->message = 'Page not found';
             break;
         default:
-                // application error
-                $this->getResponse()->setHttpResponseCode(500);
-                $this->view->message = 'Application error';
+            // application error
+            $this->getResponse()->setHttpResponseCode(500);
+            $this->view->message = 'Application error';
             break;
         }
 
         // Log exception, if logger available
-        if ($log = $this->getLog()) {
-            $log->crit($this->view->message, $errors->exception);
+        if ($this->getLog()) {
+            $this->getLog()->crit($this->view->message, $errors->exception);
         }
 
         // conditionally display exceptions
-        if ($this->getInvokeArg('displayExceptions') == true) {
+        if (APPLICATION_ENV !== 'production') {
             $this->view->exception = $errors->exception;
         }
 
@@ -76,11 +75,11 @@ class ErrorController extends Zend_Controller_Action
      */
     public function getLog()
     {
+        $log = null;
         $bootstrap = $this->getInvokeArg('bootstrap');
-        if (!$bootstrap->hasResource('Log')) {
-            return false;
+        if ($bootstrap->hasResource('Log')) {
+            $log = $bootstrap->getResource('Log');
         }
-        $log = $bootstrap->getResource('Log');
         return $log;
     }
 }

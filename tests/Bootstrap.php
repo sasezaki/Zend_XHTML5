@@ -58,9 +58,9 @@ $config = new Zend_Config_Ini(
 );
 
 //  Setup DB Connection
-$dbAdapter = Zend_Db::factory($config->resources->db);
+/*$dbAdapter = Zend_Db::factory($config->resources->db);
 $connection = new Zend_Test_PHPUnit_Db_Connection($dbAdapter, 'unit_tests');
-Zend_Db_Table_Abstract::setDefaultAdapter($dbAdapter);
+Zend_Db_Table_Abstract::setDefaultAdapter($dbAdapter);*/
 
-/** Put Connection in Registry */
-Zend_Registry::set('connection', $connection);
+//  Put Connection in Registry
+/*Zend_Registry::set('connection', $connection);*/
