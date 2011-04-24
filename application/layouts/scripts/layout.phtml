@@ -18,16 +18,21 @@
     /** Set <script /> Tags */
     $this->jQuery()
         /** @link http://www.modernizr.com/ */
-        ->addJavascriptFile('/js/modernizr-1.7.min.js');
+        ->addJavascriptFile('/js/modernizr-'.$config->modernizr->version.'.min.js');
 
-    /** @link http://mathiasbynens.be/notes/async-analytics-snippet */
     if (APPLICATION_ENV == 'production') {
-        $this->jQuery()->addJavascript(
-            "var _gaq=[['_setAccount','{$config->google->key->analytics}'],['".
-            "_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.ge".
-            "tElementsByTagName(t)[0];g.async=1;g.src='//www.google-analytics".
-            ".com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))"
-        );
+        $this->jQuery()
+            ->setVersion($config->jQuery->version)
+    	/** @link http://mathiasbynens.be/notes/async-analytics-snippet */
+            ->addJavascript(
+                "var _gaq=[['_setAccount','{$config->google->key->analytics}'],['".
+                "_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.ge".
+                "tElementsByTagName(t)[0];g.async=1;g.src='//www.google-analytics".
+                ".com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))"
+            );
+    } else {
+        $this->jQuery()
+            ->setLocalPath($this->baseUrl('js/jquery-'.$config->jQuery->version.'.min.js'));
     }
 
     /** Set <title /> Tag */
