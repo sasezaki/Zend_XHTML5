@@ -19,6 +19,6 @@
 		<exec command="phpdoc --useconfig docs/phpdoc.ini" logoutput="true" />
 	</target>
 	<target name="tests">
-		<exec command="phpunit --configuration=tests/phpunit.xml" logoutput="false" />
+		<exec command="phpunit --configuration=tests/phpunit.xml" logoutput="true" />
 	</target>
 </project>

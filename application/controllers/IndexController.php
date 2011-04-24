@@ -23,7 +23,7 @@
  * @license   http://www.opensource.org/licenses/bsd-license New BSD License
  * @link      http://github.com/dalanhurst/Zend_XHTML5
  */
-class IndexController extends Zend_Controller_Action
+class IndexController extends Mend_Controller_Action_Html
 {
     /**
      * Index Action

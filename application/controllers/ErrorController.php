@@ -23,7 +23,7 @@
  * @license   http://www.opensource.org/licenses/bsd-license New BSD License
  * @link      http://github.com/dalanhurst/Zend_XHTML5
  */
-class ErrorController extends Zend_Controller_Action
+class ErrorController extends Mend_Controller_Action_Html
 {
     /**
      * Error Action

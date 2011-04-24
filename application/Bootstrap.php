@@ -24,10 +24,6 @@
  */
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-    /**
-     * @staticvar jQuery version to bootstrap
-     */
-    const JQUERY_VERSION = '1.5.2';
 
     /**
      * Store config in registry
@@ -47,63 +43,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     }
 
     /**
-     * Register Namespaces for Zend_Autoloder
-     *
-     * @return void
-     */
-    protected function _initRegisterAutoloaderNamespaces()
-    {
-        $this->getApplication()->getAutoloader()
-            ->registerNamespace('Mend_');
-    }
-
-    /**
-     * Initialize View Helpers
-     *
-     * @return void
-     */
-    protected function _initViewPlaceholders()
-    {
-        /**  Ensure view is loaded */
-        $this->bootstrap('view');
-        $view = $this->getResource('view');
-
-        /**
-         * jQuery
-         *
-         * The latest 1.x jQuery libraries from Google's CDN if in a
-         * production environment, otherwise load the local "jquery-latest"
-         * file.
-         *
-         * @link http://jquery.com/
-         * @link http://code.google.com/apis/libraries/devguide.html
-         */
-        $view->addHelperPath(
-            'ZendX/JQuery/View/Helper',
-            'ZendX_JQuery_View_Helper'
-        );
-        if (APPLICATION_ENV == 'production') {
-            $view->jQuery()->setVersion(self::JQUERY_VERSION);
-        } else {
-            $view->jQuery()->setLocalPath($view->baseUrl('js/jquery-'.self::JQUERY_VERSION.'.min.js'));
-        }
-        $view->jQuery()->enable();
-
-        /**
-         * Zend_Mend Library
-         *
-         * Provides, among other things, the BodyScript view helper to write
-         * script elements into <body/> rather than <head/>
-         *
-         * @link http://github.com/dalanhurst/Zend_Mend
-         */
-        $view->setHelperPath(
-            'Mend/View/Helper',
-            'Mend_View_Helper'
-        );
-    }
-
-    /**
      * Negotiate Content-Type
      *
      * @return void
@@ -114,7 +53,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('frontController');
 
         /** Register plugin */
-        $this->frontController
+        $this
+            ->frontController
             ->registerPlugin(new Mend_Controller_Plugin_XhtmlNegotiation());
     }
 }
