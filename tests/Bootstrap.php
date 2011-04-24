@@ -25,24 +25,16 @@ defined('APPLICATION_ENV') || define('APPLICATION_ENV', 'testing');
 //  Maximize memory for testing
 ini_set('memory_limit', '-1');
 
-//  Ensure library/ is on include_path
-set_include_path(
-    implode(
-        PATH_SEPARATOR,
-        array(
-            realpath(realpath(dirname(__FILE__) . '/../../Zend_Mend/library')),
-            realpath('/usr/local/zend/share/ZendFramework/library'),
-            get_include_path()
-        )
-    )
-);
+//  Class-map Autoloading
+//  @link http://weierophinney.net/matthew/archives/245-Autoloading-Benchmarks.html
+require_once APPLICATION_PATH.'/../resources/classmap.application.php';
+require_once APPLICATION_PATH.'/../resources/classmap.Zend_Mend.php';
+require_once APPLICATION_PATH.'/../resources/classmap.Zend.php';
+require_once APPLICATION_PATH.'/../resources/classmap.ZendX.php';
 
 //  Start Zend Autoloader
-require_once 'Zend/Loader/Autoloader.php';
 $loader = Zend_Loader_Autoloader::getInstance();
-$loader
-    ->setFallbackAutoloader(true)
-    ->registerNamespace('Mend_');
+$loader->setFallbackAutoloader(true);
 
 //  Load Application Module Autoloader
 $applicationLoader = new Zend_Application_Module_Autoloader(array(
@@ -58,9 +50,11 @@ $config = new Zend_Config_Ini(
 );
 
 //  Setup DB Connection
-/*$dbAdapter = Zend_Db::factory($config->resources->db);
-$connection = new Zend_Test_PHPUnit_Db_Connection($dbAdapter, 'unit_tests');
-Zend_Db_Table_Abstract::setDefaultAdapter($dbAdapter);*/
+if ($config->resources->db) {
+    $dbAdapter = Zend_Db::factory($config->resources->db);
+    $connection = new Zend_Test_PHPUnit_Db_Connection($dbAdapter, 'unit_tests');
+    Zend_Db_Table_Abstract::setDefaultAdapter($dbAdapter);
 
-//  Put Connection in Registry
-/*Zend_Registry::set('connection', $connection);*/
+    //  Put Connection in Registry
+    Zend_Registry::set('connection', $connection);
+}
