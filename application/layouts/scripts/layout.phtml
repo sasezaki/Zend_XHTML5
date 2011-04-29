@@ -11,7 +11,6 @@
 
     /** Set <meta /> Tags */
     $this->headMeta()->setSeparator('')
-        ->setCharset('UTF-8')
         ->appendName('author', $config->site->author)
         ->appendName('description', $config->site->description);
 
@@ -23,7 +22,7 @@
     if (APPLICATION_ENV == 'production') {
         $this->jQuery()
             ->setVersion($config->jQuery->version)
-    	/** @link http://mathiasbynens.be/notes/async-analytics-snippet */
+            /** @link http://mathiasbynens.be/notes/async-analytics-snippet */
             ->addJavascript(
                 "var _gaq=[['_setAccount','{$config->google->key->analytics}'],['".
                 "_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.ge".
@@ -43,6 +42,7 @@
         echo strtolower($this->doctype()).PHP_EOL.
             '<html class="no-js" lang="en">';
     } else {
+        $this->headMeta()->setCharset('UTF-8');
         echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL.
             '<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">';
     }
