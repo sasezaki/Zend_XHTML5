@@ -26,7 +26,8 @@ Dependencies:
 Setup:
 ------
 ***Apache VirtualHost***
-See resources/local.pulse.conf
+
+See resources/local.zend_xhtml5.conf
 
 ***Pear Dependencies***
 
