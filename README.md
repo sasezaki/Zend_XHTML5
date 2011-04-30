@@ -25,8 +25,11 @@ Dependencies:
 
 Setup:
 ------
-* Apache VirtualHost: See resources/local.pulse.conf
-* Pear Dependencies:
+***Apache VirtualHost***
+See resources/local.pulse.conf
+
+***Pear Dependencies***
+
     pear upgrade
     pear channel-discover components.ez.no
     pear channel-discover pear.netpirates.net
@@ -38,8 +41,8 @@ Setup:
     pear install phing/phing
     pear install theseer/Autoload
 
-Suggested .gitignore:
----------------------
+***Suggested .gitignore***
+
     .gitignore
     .buildpath
     .project
