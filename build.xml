@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Zend_XHTML5" default="all">
+<project name="Zend_XHTML5" default="build">
 	<property name="path.Zend" value="/usr/local/zend/share/ZendFramework/library/Zend" />
 	<property name="path.ZendX" value="/usr/local/zend/share/ZendFramework/library/ZendX" />
 	<property name="path.Zend_Mend" value="../Zend_Mend/library/Mend" />
 	<target name="all">
+		<phingcall target="clean" />
 		<phingcall target="classmaps" />
 		<phingcall target="docs" />
 		<phingcall target="tests" />
+	</target>
+	<target name="build">
+		<phingcall target="clean" />
+		<phingcall target="classmaps" />
 	</target>
 	<target name="classmaps">
 		<property name="phpab.options" value="--basedir / --template resources/fullpath.tpl.php --indent 4" />
@@ -14,6 +19,16 @@
 		<exec command="phpab ${phpab.options} --output resources/classmap.Zend.php --exclude ${path.Zend}/InfoCard/Exception.php ${path.Zend}" />
 		<exec command="phpab ${phpab.options} --output resources/classmap.ZendX.php ${path.ZendX}" />
 		<exec command="phpab ${phpab.options} --output resources/classmap.Zend_Mend.php ${path.Zend_Mend}" />
+	</target>
+	<target name="clean">
+		<delete>
+			<fileset dir="resources">
+				<include name="classmap.*.php" />
+			</fileset>
+		</delete>
+		<delete dir="docs/coverage" includeemptydirs="true" failonerror="true" />
+		<delete dir="docs/phpdoc" includeemptydirs="true" failonerror="true" />
+		<delete file="docs/testdox.txt" />
 	</target>
 	<target name="docs">
 		<exec command="phpdoc --useconfig docs/phpdoc.ini" logoutput="true" />
