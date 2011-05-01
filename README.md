@@ -17,6 +17,7 @@ Things included:
 
 Dependencies:
 -------------
+* [JSDoc Toolkit](http://code.google.com/p/jsdoc-toolkit/)
 * [PHP AutoloadBuilder CLI](https://github.com/theseer/Autoload)
 * [phpDocumentor](http://www.phpdoc.org/)
 * [Phing](http://www.phing.info/)

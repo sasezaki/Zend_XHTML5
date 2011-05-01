@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Zend_XHTML5" default="build">
+	<property name="path.JSDoc" value="/usr/local/jsdoc-toolkit" />
 	<property name="path.Zend" value="/usr/local/zend/share/ZendFramework/library/Zend" />
 	<property name="path.ZendX" value="/usr/local/zend/share/ZendFramework/library/ZendX" />
 	<property name="path.Zend_Mend" value="../Zend_Mend/library/Mend" />
+
 	<target name="all">
 		<phingcall target="clean" />
 		<phingcall target="classmaps" />
@@ -16,9 +18,39 @@
 	<target name="classmaps">
 		<property name="phpab.options" value="--basedir / --template resources/fullpath.tpl.php --indent 4" />
 		<exec command="phpab ${phpab.options} --output resources/classmap.application.php application" />
-		<exec command="phpab ${phpab.options} --output resources/classmap.Zend.php --exclude ${path.Zend}/InfoCard/Exception.php ${path.Zend}" />
-		<exec command="phpab ${phpab.options} --output resources/classmap.ZendX.php ${path.ZendX}" />
-		<exec command="phpab ${phpab.options} --output resources/classmap.Zend_Mend.php ${path.Zend_Mend}" />
+
+		<available file="${path.Zend}" type="dir" property="exists.Zend" />
+		<if>
+			<equals arg1="${exists.Zend}" arg2="true" />
+			<then>
+				<exec command="phpab ${phpab.options} --output resources/classmap.Zend.php --exclude ${path.Zend}/InfoCard/Exception.php ${path.Zend}" />
+			</then>
+			<else>
+				<echo message="Zend Framework is not available at ${path.Zend}. No classmap generated." />
+			</else>
+		</if>
+
+		<available file="${path.ZendX}" type="dir" property="exists.ZendX" />
+		<if>
+			<equals arg1="${exists.ZendX}" arg2="true" />
+			<then>
+				<exec command="phpab ${phpab.options} --output resources/classmap.ZendX.php ${path.ZendX}" />
+			</then>
+			<else>
+				<echo message="ZendX is not available at ${path.ZendX}. No classmap generated." />
+			</else>
+		</if>
+
+		<available file="${path.Zend_Mend}" type="dir" property="exists.Zend_Mend" />
+		<if>
+			<equals arg1="${exists.Zend_Mend}" arg2="true" />
+			<then>
+				<exec command="phpab ${phpab.options} --output resources/classmap.Zend_Mend.php ${path.Zend_Mend}" />
+			</then>
+			<else>
+				<echo message="Zend_Mend is not available at ${path.Zend_Mend}. No classmap generated." />
+			</else>
+		</if>
 	</target>
 	<target name="clean">
 		<delete>
@@ -27,11 +59,25 @@
 			</fileset>
 		</delete>
 		<delete dir="docs/coverage" includeemptydirs="true" failonerror="true" />
+		<delete dir="docs/jsdoc" includeemptydirs="true" failonerror="true" />
 		<delete dir="docs/phpdoc" includeemptydirs="true" failonerror="true" />
 		<delete file="docs/testdox.txt" />
 	</target>
 	<target name="docs">
-		<exec command="phpdoc --useconfig docs/phpdoc.ini" logoutput="true" />
+		<exec command="phpdoc --useconfig docs/phpdoc.ini" />
+		<phingcall target="jsdoc" />
+	</target>
+	<target name="jsdoc">
+		<available file="${path.JSDoc}" type="dir" property="exists.JSDoc" />
+		<if>
+			<equals arg1="${exists.JSDoc}" arg2="true" />
+			<then>
+				<exec command="java -jar ${path.JSDoc}/jsrun.jar ${path.JSDoc}/app/run.js -c=docs/jsdoc.js" />
+			</then>
+			<else>
+				<echo message="JSDoc is not available at ${path.JSDoc}" />
+			</else>
+		</if>
 	</target>
 	<target name="tests">
 		<exec command="phpunit --configuration=tests/phpunit.xml" logoutput="true" />
