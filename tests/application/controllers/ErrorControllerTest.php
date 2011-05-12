@@ -51,7 +51,8 @@ class ErrorControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->dispatch('/error/error');
         $this->assertController('error');
         $this->assertAction('error');
-        $this->assertXpathContentContains('/html/body/h2', 'You have reached the error page');
+        $this->assertSelectCount('body > h2', 1, $this->getResponse()->getBody());
+        $this->assertSelectEquals('body > h2', 'You have reached the error page', true, $this->getResponse()->getBody());
     }
 
     /**
@@ -64,7 +65,8 @@ class ErrorControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->dispatch('/does-not-exist');
         $this->assertController('error');
         $this->assertAction('error');
-        $this->assertXpathContentContains('/html/body/h2', 'Page not found');
+        $this->assertSelectCount('body > h2', 1, $this->getResponse()->getBody());
+        $this->assertSelectEquals('body > h2', 'Page not found', true, $this->getResponse()->getBody());
     }
 
     /**
@@ -78,7 +80,9 @@ class ErrorControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->dispatch('/');
         $this->assertController('error');
         $this->assertAction('error');
-        $this->assertXpathContentContains('/html/body/h2', 'Application error');
-        $this->assertXpathContentContains('/html/body/section/p', 'Test Exception');
+        $this->assertSelectCount('body > h2', 1, $this->getResponse()->getBody());
+        $this->assertSelectEquals('body > h2', 'Application error', true, $this->getResponse()->getBody());
+        $this->assertSelectCount('body > section > p', 1, $this->getResponse()->getBody());
+        $this->assertSelectEquals('body > section > p', 'Test Exception', true, $this->getResponse()->getBody());
     }
 }

@@ -50,6 +50,7 @@ See resources/local.zend_xhtml5.conf
     .project
     .settings/
     docs/coverage/
+    docs/jsdoc/
     docs/phpdoc/
     docs/testdox.txt
     resources/classmap.*.php

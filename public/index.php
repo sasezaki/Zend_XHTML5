@@ -30,9 +30,26 @@ require_once APPLICATION_PATH.'/../resources/classmap.Zend_Mend.php';
 require_once APPLICATION_PATH.'/../resources/classmap.Zend.php';
 require_once APPLICATION_PATH.'/../resources/classmap.ZendX.php';
 
+//  Fallback to ZF1 Autoloading if not in production
+if (APPLICATION_ENV != 'production') {
+    set_include_path(
+        implode(
+            PATH_SEPARATOR,
+            array(
+                get_include_path(),
+                APPLICATION_PATH.'/../../Zend_Mend/library'
+            )
+        )
+    );
+    include_once 'Zend/Application.php';
+}
+
 // Create, bootstrap, and run the application
 $application = new Zend_Application(
     APPLICATION_ENV,
     APPLICATION_PATH . '/configs/application.ini'
 );
+if (APPLICATION_ENV != 'production') {
+    $application->getAutoloader()->registerNamespace('Mend_');
+}
 $application->bootstrap()->run();

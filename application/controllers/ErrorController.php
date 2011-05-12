@@ -63,7 +63,7 @@ class ErrorController extends Mend_Controller_Action_Html
             $this->view->exception = $errors->exception;
         }
 
-        $this->view->request   = $errors->request;
+        $this->view->request = $errors->request;
     }
 
 
