@@ -17,7 +17,7 @@
     /** Set <script /> Tags */
     $this->jQuery()
         /** @link http://www.modernizr.com/ */
-        ->addJavascriptFile('/js/modernizr-'.$config->modernizr->version.'.min.js');
+        ->addJavascriptFile('/js/modernizr-'.$config->modernizr->version.'.js');
 
     if (APPLICATION_ENV == 'production') {
         $this->jQuery()
@@ -31,7 +31,7 @@
             );
     } else {
         $this->jQuery()
-            ->setLocalPath($this->baseUrl('js/jquery-'.$config->jQuery->version.'.min.js'));
+            ->setLocalPath($this->baseUrl('js/jquery-'.$config->jQuery->version.'.js'));
     }
 
     /** Set <title /> Tag */
