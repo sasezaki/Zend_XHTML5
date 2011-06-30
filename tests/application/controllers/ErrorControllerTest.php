@@ -52,7 +52,12 @@ class ErrorControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->assertController('error');
         $this->assertAction('error');
         $this->assertSelectCount('body > h2', 1, $this->getResponse()->getBody());
-        $this->assertSelectEquals('body > h2', 'You have reached the error page', true, $this->getResponse()->getBody());
+        $this->assertSelectEquals(
+            'body > h2',
+            'You have reached the error page',
+            true,
+            $this->getResponse()->getBody()
+        );
     }
 
     /**

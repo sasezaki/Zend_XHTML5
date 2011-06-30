@@ -37,10 +37,12 @@ $loader = Zend_Loader_Autoloader::getInstance();
 $loader->setFallbackAutoloader(true);
 
 //  Load Application Module Autoloader
-$applicationLoader = new Zend_Application_Module_Autoloader(array(
-    'basePath' => realpath(dirname(__FILE__) . '/../application'),
-    'namespace' => 'Application'
-));
+$applicationLoader = new Zend_Application_Module_Autoloader(
+    array(
+        'basePath' => realpath(dirname(__FILE__) . '/../application'),
+        'namespace' => 'Application'
+    )
+);
 $loader->pushAutoloader($applicationLoader, 'Application_');
 
 //  Get Application Configuration
