@@ -23,7 +23,7 @@ Dependencies:
 * [phpDocumentor](http://www.phpdoc.org/)
 * [Phing](http://www.phing.info/)
 * [PHPUnit](http://www.phpunit.de/)
-* [Zend_Mend](https://github.com/echoeastcreative/Zend_Mend)
+* [Zend_Mend](https://github.com/dalanhurst/Zend_Mend)
 
 Setup:
 ------
